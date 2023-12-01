@@ -1,0 +1,59 @@
+1.File类的理解
+-File类位于java.io包下，本章涉及到的相关流也都声明在java.io包下
+-File类的一个对象，对应于操作系统下的一个文件或文件目录
+-File类中声明了新建,删除,获取名称,重命名等方法,但没有涉及到文件内容的读写，想要实现文件内容的读写,需要用IO流
+-File类的对象，通常是作为IO流操作的文件的端点出现的
+    >代码层面，将File类的对象作为参数传递到IO流相关类的构造器中
+
+2.内部API使用说明
+2.1 构造器
+public File(String pathname)  以pathname为路径创建File对象，可以是绝对路径或者相对路径
+    绝对路径：以Windows操作系统为例子，包括盘符在内的文件或文件目录的完整路径
+    相对路径：相对于某一个文件目录来讲的相对位置
+            在IDEA中，如果使用单元测试方法，相对于当前的模块来讲
+                     如果使用main()方法，相对于当前的项目来讲
+
+public File(String parent,String child) 以parent为父路径，child为子路径创建File对象
+    参数1：一定是一个文件目录
+    参数2：可以是一个文件也可以是一个文件目录
+public File(File parent,String child) 根据一个父File对象和子文件路径创建File对象
+    参数1：一定是一个文件目录(以file的形式呈现)
+    参数2：可以是一个文件也可以是一个文件目录
+
+2.2 方法
+创建文件或目录：
+boolean createNewFile()：创建一个新文件，如果文件已存在则返回false。
+boolean mkdir()：创建一个新目录，如果目录已存在则返回false。
+boolean mkdirs()：创建一个新目录，包括创建必要的父目录。
+
+删除文件或目录：
+boolean delete()：删除文件或目录，如果删除成功返回true，否则返回false。
+void deleteOnExit()：在JVM退出时删除文件或目录。
+
+判断文件或目录的属性：
+boolean exists()：判断文件或目录是否存在。
+boolean isFile()：判断是否为文件。
+boolean isDirectory()：判断是否为目录。
+boolean isHidden()：判断文件或目录是否隐藏。
+boolean canRead():判断是否可读7
+boolean canWrite():判断是否可写
+boolean canHidden():判断是否隐藏
+
+long lastModified()：返回文件或目录的最后修改时间。
+long length()：返回文件的大小。
+
+获取文件或目录的信息：
+String getName()：返回文件或目录的名称。
+String getPath()：返回文件或目录的路径。
+String getAbsolutePath()：返回文件或目录的绝对路径。
+File getAbsoluteFile()：返回文件或目录的绝对路径表示的文件
+String getParent()：返回文件或目录的父目录的路径，若无，则返回null
+String[] list()：返回目录下的所有文件和目录的名称。
+File[] listFiles()：返回目录下的所有文件和目录的File对象。
+
+文件或目录的重命名和移动：
+boolean renameTo(File dest)：重命名文件或目录为指定的名称。
+boolean renameTo(String destPath)：重命名文件或目录为指定的路径。
+boolean setLastModified(long time)：设置文件或目录的最后修改时间。
+boolean setReadOnly()：设置文件或目录为只读。
+

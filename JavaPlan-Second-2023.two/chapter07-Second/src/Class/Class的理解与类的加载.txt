@@ -1,0 +1,54 @@
+
+1.Class类的理解
+（如下以Java类的加载为例说明）
+-针对于编写好的.java源文件进行编译（使用javac.exe）,会生成一个或多个.class字节码文件，接着，我们使用java.exe命令对指定的.class文件进行
+解释运行，这个解释运行的过程中，我们需要将.class字节码文件加载(使用类的加载器)到内存中(存放在方法区)，加载到内存中的.class文件对应的结构即为Class的一个实例
+
+比如：加载到内存中的Person类或String类或User类,都作为Class的一个一个实例
+
+Class clazz1 = Person.class;//运行时类
+Class clazz2 = String.class;
+Class clazz3 = User.class;
+
+说明：运行时类在内存中会缓存起来，在整个执行期间，只会加载一次
+
+2.体会：Class看作是反射的源头
+
+3.获取Class实例的几种方式
+        //1.调用运行时类的静态属性
+        Class userClass = User.class;
+        System.out.println(userClass);
+
+        //2.调用运行时类的对象的getclass()方法
+        User user = new User();
+        Class aClass = user.getClass();
+
+        //3.调用Class的静态方法forName(String className)
+        String className = "Class.User";//全类名
+        Class aClass1 = Class.forName(className);
+
+        //4.使用类的加载器方式
+        Class aClass2 = ClassLoader.getSystemClassLoader().loadClass("Class.User");
+
+4.Class的实例都可以指向哪些结构呢？
+简言之，所有Java类型！
+（1）class：外部类，成员(成员内部类，静态内部类)，局部内部类，匿名内部类
+（2）interface：接口
+（3）[]：数组
+（4）enum：枚举
+（5）annotation：注解@interface
+（6）primitive type：基本数据类型
+（7）void
+
+
+5.类 的加载过程
+（1）装载（Loading）
+    将类的class文件读入内存，并为之创建一个java.lang.Class对象。此过程由类加载器完成
+（2）链接（Linking）
+    ①验证Verify：确保加载的类信息符合JVM规范，例如：以cafebabe开头，没有安全方面的问题。
+    ②准备Prepare：正式为类变量（static）分配内存并设置类变量默认初始值的阶段，这些内存都将在方法区中进行分配。
+    ③解析Resolve：虚拟机常量池内的符号引用（常量名）替换为直接引用（地址）的过程。
+（3）初始化（Initialization）
+    •执行类构造器<clinit>()方法的过程。类构造器<clinit>()方法是由编译期自动收集类中所有类变量的赋值动作和静态代码块中的语句合并产生的。（类构造器是构造类信息的，不是构造该类对象的构造器）。
+    •当初始化一个类的时候，如果发现其父类还没有进行初始化，则需要先触发其父类的初始化。
+    •虚拟机会保证一个类的<clinit>()方法在多线程环境中被正确加锁和同步。

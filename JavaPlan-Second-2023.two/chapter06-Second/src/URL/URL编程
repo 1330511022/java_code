@@ -1,0 +1,28 @@
+
+URL：统一资源定位符（种子）
+1.作用：
+一个具体的URL就对应着互联网上某一资源的地址
+
+
+2.URL的格式：
+http://localhost:8082/examples/abc.jpg?name=tom      ----->万事万物皆对象
+应用层协议:/IP地址:端口号/资源地址?参数列表
+
+
+3，URL类的实例化以及常用方法：
+实例化:
+ String s = "http://localhost:8082/examples/abc.jpg?name=tom";
+ URL url = new URL(s);
+常用方法:
+public String getProtocol(): 返回URL的协议部分（例如http、https等）。
+public String getHost(): 返回URL的主机部分。
+public int getPort(): 返回URL的端口号。
+public String getPath(): 返回URL的路径部分。
+public String getQuery(): 返回URL的查询部分。
+public String getFile(): 返回URL的文件名部分。
+public String getRef(): 返回URL的锚点（即#后面的部分）。
+public String toString(): 返回URL的字符串表示。
+public URLConnection openConnection(): 打开URL的连接，并返回一个URLConnection对象，用于进一步操作URL资源。
+public InputStream openStream(): 打开URL的输入流，用于读取URL资源的内容。
+public boolean equals(Object obj): 判断URL对象是否与另一个对象相等。
+public int hashCode(): 返回URL对象的哈希码。

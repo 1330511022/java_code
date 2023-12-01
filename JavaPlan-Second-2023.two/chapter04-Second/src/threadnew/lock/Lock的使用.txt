@@ -1,0 +1,10 @@
+
+除了使用synchronized同步机制处理线程安全问题之外，还可以使用jdk5.0提供的Lock锁的方式
+
+1.步骤：
+1.创建Lock的实例，需要确保多个线程共用同一个Lock实例
+private final ReentrantLock lock = new ReentrantLock();
+2.执行Lock方法，锁定对共享资源的调用
+lock.lock();
+3.unlock()释放对共享数据的调用
+lock.unlock();

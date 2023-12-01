@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.path="$MODULE_DIR$/chapter07-reflection" external.root.project.path="$MODULE_DIR$/chapter07-reflection" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/JavaPlan-Second-2023.two/chapter07-reflection" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
